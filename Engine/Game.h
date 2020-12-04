@@ -56,6 +56,7 @@ private:
 	bool view2D = true;
 
 	FrameTimer ft;
+	FrameTimer fps;
 	Level level;
 	Player player{ {10,2} };
 

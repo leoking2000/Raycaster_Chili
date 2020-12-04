@@ -327,7 +327,11 @@ void Graphics::DrawRect(int x, int y, int width, int height, Color c)
 	{
 		for (int j = y; j < height + y; j++)
 		{
-			PutPixel(i, j, c);
+			assert(i >= 0);
+			assert(i < int(Graphics::ScreenWidth));
+			assert(j >= 0);
+			assert(j < int(Graphics::ScreenHeight));
+			pSysBuffer[Graphics::ScreenWidth * j + i] = c;
 		}
 	}
 }
@@ -341,7 +345,11 @@ void Graphics::DrawCircle(int xPos, int yPos, int r, Color c)
 			// if the distance from the center is less or eq to r then draw
 			if ((xPos - x) * (xPos - x) + (yPos - y) * (yPos - y) < r * r)
 			{
-				PutPixel(x, y, c);
+				assert(x >= 0);
+				assert(x < int(Graphics::ScreenWidth));
+				assert(y >= 0);
+				assert(y < int(Graphics::ScreenHeight));
+				pSysBuffer[Graphics::ScreenWidth * y + x] = c;
 			}
 		}
 	}
@@ -373,7 +381,11 @@ void Graphics::DrawLine(float x0, float y0, float x1, float y1, Color c)
 			const int yi = (int)y;
 			if (x >= 0 && x < ScreenWidth && yi >= 0 && yi < ScreenHeight)
 			{
-				PutPixel(x, yi, c);
+				assert(x >= 0);
+				assert(x < int(Graphics::ScreenWidth));
+				assert(y >= 0);
+				assert(y < int(Graphics::ScreenHeight));
+				pSysBuffer[Graphics::ScreenWidth * yi + x] = c;
 			}
 		}
 	}
@@ -395,7 +407,11 @@ void Graphics::DrawLine(float x0, float y0, float x1, float y1, Color c)
 			const int xi = (int)x;
 			if (xi >= 0 && xi < ScreenWidth && y >= 0 && y < ScreenHeight)
 			{
-				PutPixel(xi, y, c);
+				assert(x >= 0);
+				assert(x < int(Graphics::ScreenWidth));
+				assert(y >= 0);
+				assert(y < int(Graphics::ScreenHeight));
+				pSysBuffer[Graphics::ScreenWidth * y + xi] = c;
 			}
 		}
 	}

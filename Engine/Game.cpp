@@ -48,6 +48,7 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+
 	Vector2 playerPos = player.Position();
 	Vector2 playerDir = player.Direction();
 
@@ -140,7 +141,7 @@ void Game::ComposeFrame()
 		Color color;
 		switch (level.Get(hitPos.x,hitPos.y))
 		{
-		case '#':  color = Colors::White; break; 
+		case '#':  color = Colors::LightGray; break; 
 		case '1':  color = Colors::Green; break; 
 		case '2':  color = Colors::Red;   break; 
 		case '3':  color = Colors::Blue;  break; 
@@ -149,7 +150,7 @@ void Game::ComposeFrame()
 
 		if (side == 0)
 		{
-			gfx.DrawLine(x, drawStart, x, drawEnd, color);
+			gfx.DrawLine(x, drawStart, x, drawEnd, color); // DrawVerticalLine?
 		}
 		else {
 			gfx.DrawLine(x, drawStart, x, drawEnd, Color(color.GetR() / 2,
@@ -178,6 +179,10 @@ void Game::ComposeFrame()
 		gfx.DrawLine(gfxPlayerPos.x, gfxPlayerPos.y, gfxPlayerDir.x, gfxPlayerDir.y, Colors::Red); 
 
 	}
+
+	// FPS
+	float frameTime = fps.Mark(); //frameTime is the time this frame has taken, in seconds
+	DrawText(level.GetWidth() * 11, 0, std::to_string(int(1 / frameTime)));
 
 }
 
